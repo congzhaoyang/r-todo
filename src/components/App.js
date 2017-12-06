@@ -39,6 +39,7 @@ class App extends Component {
           deleteTask={this.deleteTask.bind(this)} 
           toggleTask={this.toggleTask.bind(this)}
           editTask={this.editTask.bind(this)}
+          saveTask={this.saveTask.bind(this)}
           todos={this.state.todos}
         />
       </div>
@@ -76,6 +77,15 @@ class App extends Component {
 
   editTask() {
     console.log('edit')
+  }
+
+  saveTask(oldTask, newTask) {
+    console.log('save aaa')
+    var foundTask = _.find(this.state.todos, todo => todo.task === oldTask) 
+    foundTask.task = newTask
+    this.setState({
+      todos: this.state.todos
+    })
   }
 }
 

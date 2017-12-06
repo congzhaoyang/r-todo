@@ -22,7 +22,7 @@ class TodoListItem extends Component {
     if(this.state.isEditing) {
       return (
         <div>
-          <button>保存</button>
+          <button onClick={this.onSave.bind(this)}>保存</button>
           <button>取消</button>
         </div>
       )
@@ -41,7 +41,7 @@ class TodoListItem extends Component {
       return (
         <div>
           <form>
-            <input placeholder="请输入" defaultValue={this.props.task}/>
+            <input placeholder="请输入" defaultValue={this.props.task} ref="editInput"/>
             {/* {this.renderError()} */}
           </form>
         </div>
@@ -81,6 +81,19 @@ class TodoListItem extends Component {
     this.props.editTask()
   }
 
+  onSave(event) {
+    event.preventDefault()
+
+    const oldTask = this.props.task
+    const newTask = this.refs.editInput.value
+    console.log('save')
+    console.log(this.refs.editInput.value)
+    this.props.saveTask(oldTask, newTask)
+
+    this.setState({
+      isEditing: false
+    })
+  }
 }
 
 export default TodoListItem
