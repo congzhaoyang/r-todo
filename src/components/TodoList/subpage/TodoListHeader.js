@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 class TodoListHeader extends Component {
   render() {
     return (
-      <div>TodoListHeader</div>
+      <div>
+        <p>task | action</p>
+      </div>
     )
   }
 }
