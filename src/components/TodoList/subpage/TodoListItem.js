@@ -23,7 +23,7 @@ class TodoListItem extends Component {
       return (
         <div>
           <button onClick={this.onSave.bind(this)}>保存</button>
-          <button>取消</button>
+          <button onClick={this.onCancel.bind(this)}>取消</button>
         </div>
       )
     }
@@ -89,6 +89,17 @@ class TodoListItem extends Component {
     console.log('save')
     console.log(this.refs.editInput.value)
     this.props.saveTask(oldTask, newTask)
+
+    this.setState({
+      isEditing: false
+    })
+  }
+
+  onCancel(event) {
+    console.log('cancel')
+    event.preventDefault()
+    var oldTask = this.props.task
+    this.refs.editInput.value = oldTask
 
     this.setState({
       isEditing: false
