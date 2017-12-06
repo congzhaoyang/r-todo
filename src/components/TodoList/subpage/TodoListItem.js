@@ -31,7 +31,7 @@ class TodoListItem extends Component {
     return (
       <div>
         <button>编辑</button>
-        <button>删除</button>
+        <button onClick={this.onDelete.bind(this)}>删除</button>
       </div> 
     )
   }
@@ -58,6 +58,12 @@ class TodoListItem extends Component {
     }
 
     return <div>{this.props.task}</div>
+  }
+
+  onDelete() {
+    const currentTask = this.props.task
+    console.log(currentTask)
+    this.props.deleteTask(currentTask)
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-
+import _ from 'lodash'
 import TodoCreate from './TodoCreate/TodoCreate'
 import TodoList from './TodoList/TodoList'
 
@@ -32,8 +32,13 @@ class App extends Component {
     return (
       <div className="App">
         <p>todos</p>
-        <TodoCreate createTask={this.createTask.bind(this)}/>
-        <TodoList todos={this.state.todos}/>
+        <TodoCreate 
+          createTask={this.createTask.bind(this)}
+        />
+        <TodoList 
+          deleteTask={this.deleteTask.bind(this)} 
+          todos={this.state.todos}
+        />
       </div>
     );
   }
@@ -46,6 +51,15 @@ class App extends Component {
     })
     this.setState({
       todos: todos
+    })
+  }
+
+  deleteTask(currentTask) {
+    console.log('delete')
+    _.remove(this.state.todos, todo => todo.task === currentTask)
+    //TODO:为什么setState回this.state,这样有意义吗
+    this.setState({
+      todos: this.state.todos
     })
   }
 }
