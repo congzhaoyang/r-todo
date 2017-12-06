@@ -30,7 +30,7 @@ class TodoListItem extends Component {
 
     return (
       <div>
-        <button>编辑</button>
+        <button onClick={this.onEdit.bind(this)}>编辑</button>
         <button onClick={this.onDelete.bind(this)}>删除</button>
       </div> 
     )
@@ -42,7 +42,7 @@ class TodoListItem extends Component {
         <div>
           <form>
             <input placeholder="请输入" defaultValue={this.props.task}/>
-            {this.renderError()}
+            {/* {this.renderError()} */}
           </form>
         </div>
       )
@@ -72,6 +72,15 @@ class TodoListItem extends Component {
     console.log(currentTask)
     this.props.toggleTask(this.props.task)
   }
+
+  onEdit() {
+    console.log('editing')
+    this.setState({
+      isEditing: true
+    })
+    this.props.editTask()
+  }
+
 }
 
 export default TodoListItem

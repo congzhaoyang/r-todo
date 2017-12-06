@@ -38,6 +38,7 @@ class App extends Component {
         <TodoList 
           deleteTask={this.deleteTask.bind(this)} 
           toggleTask={this.toggleTask.bind(this)}
+          editTask={this.editTask.bind(this)}
           todos={this.state.todos}
         />
       </div>
@@ -71,6 +72,10 @@ class App extends Component {
     this.setState ({
       todos: this.state.todos
     })
+  }
+
+  editTask() {
+    console.log('edit')
   }
 }
 
