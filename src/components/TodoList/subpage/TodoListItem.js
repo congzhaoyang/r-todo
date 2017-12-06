@@ -12,8 +12,8 @@ class TodoListItem extends Component {
   render() {
     return (
       <div>
-        {this.renderActionSection()}
         {this.renderTaskSection()}
+        {this.renderActionSection()}
       </div>
     )
   }
@@ -54,16 +54,23 @@ class TodoListItem extends Component {
     }
 
     if(!this.props.isCompleted) {
-      return <p>{this.props.task}</p>
+      return <div onClick={this.onToggle.bind(this)} style={taskStyle}>{this.props.task}</div>
     }
 
-    return <div>{this.props.task}</div>
+    return <div onClick={this.onToggle.bind(this)} style={taskStyle}>{this.props.task}</div>
   }
 
   onDelete() {
     const currentTask = this.props.task
     console.log(currentTask)
     this.props.deleteTask(currentTask)
+  }
+
+  onToggle() {
+    //TODO: 为什么currentTask要通过props传进来, currentTask是怎么确定的
+    const currentTask = this.props.task
+    console.log(currentTask)
+    this.props.toggleTask(this.props.task)
   }
 }
 

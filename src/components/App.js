@@ -37,6 +37,7 @@ class App extends Component {
         />
         <TodoList 
           deleteTask={this.deleteTask.bind(this)} 
+          toggleTask={this.toggleTask.bind(this)}
           todos={this.state.todos}
         />
       </div>
@@ -59,6 +60,15 @@ class App extends Component {
     _.remove(this.state.todos, todo => todo.task === currentTask)
     //TODO:为什么setState回this.state,这样有意义吗
     this.setState({
+      todos: this.state.todos
+    })
+  }
+
+  toggleTask(currentTask) {
+    console.log('toggle')
+    var foundTask = _.find(this.state.todos, todo => todo.task === currentTask)
+    foundTask.isCompleted = !foundTask.isCompleted
+    this.setState ({
       todos: this.state.todos
     })
   }
