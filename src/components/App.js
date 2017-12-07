@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import '../App.css'
+// import '../App.css'
 import Button from 'antd/lib/button'
 import _ from 'lodash'
 import TodoCreate from './TodoCreate/TodoCreate'
@@ -36,6 +36,7 @@ class App extends Component {
         <p>todos</p>
         <TodoCreate 
           createTask={this.createTask.bind(this)}
+          validateTask={this.validateTask.bind(this)}
         />
         <TodoList 
           deleteTask={this.deleteTask.bind(this)} 
@@ -57,6 +58,19 @@ class App extends Component {
     this.setState({
       todos: todos
     })
+  }
+
+  validateTask(task) {
+    console.log('validate')
+    if(!task) {
+      alert('请输入task')
+      return '请输入task'
+    } else if(_.find(this.state.todos, todo => todo.task === task)) {
+      alert('task已存在')
+      return 'task已存在'
+    } else {
+      return ''
+    }
   }
 
   deleteTask(currentTask) {

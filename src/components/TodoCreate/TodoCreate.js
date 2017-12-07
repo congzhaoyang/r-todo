@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+// import Button from 'antd/lib/button'
+import Input from 'antd/lib/input'
 
 class TodoCreate extends Component {
   constructor(props) {
@@ -25,13 +27,29 @@ class TodoCreate extends Component {
   handleCreate(event) {
     event.preventDefault()
     const task = this.refs.createInput.value
+    const error = this.props.validateTask(task)
+
+    if(error) {
+      this.setState({
+        error: error
+      })
+      return
+    }
+
     this.refs.createInput.value = ''
     console.log(task)
     this.props.createTask(task)
+    this.setState({
+      error: null
+    })
   }
 
   renderError() {
-
+    if(this.state.error) {
+      alert(this.state.error)
+      return <div>{this.state.error}</div>
+    }
+    return null
   }
 }
 
