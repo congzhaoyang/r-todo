@@ -27,7 +27,6 @@ class TodoCreate extends Component {
     const task = this.refs.createInput.value
     this.refs.createInput.value = ''
     console.log(task)
-    // const input = this.refs
     this.props.createTask(task)
   }
 
